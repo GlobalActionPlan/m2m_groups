@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="main_macro"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="m2m_groups">
+<body>
+
+<div metal:fill-slot="content">
+
+    <h1>${group['title']}</h1>
+    <div>${group['description']}</div>
+
+    <h3 i18n:translate="">Managers</h3>
+    <ul>
+        <tal:iterate repeat="userid group['managers']">
+            <li>${userid}</li>
+        </tal:iterate>
+    </ul>
+    
+    <h3 i18n:translate="">Members</h3>
+    <ul>
+        <tal:iterate repeat="email group['members']">
+            <li>${email}</li>
+        </tal:iterate>
+    </ul>
+
+    <p>&nbsp;</p>
+    <a href="${request.resource_url(context, 'groups', query = {'action': 'edit', 'name': group_name})}"
+       class="buttonize" i18n:translate="">Edit</a>
+    <a href="${request.resource_url(context, 'groups')}"
+       class="buttonize" i18n:translate="">Back</a>
+
+
+</div>
+</body>
+</html>
+

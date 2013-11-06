@@ -8,7 +8,10 @@ CHANGES = open(os.path.join(here, 'CHANGES.rst')).read()
 
 requires = [
     'pyramid',
+    'colander',
+    'deform',
     'MadeToMeasure',
+    'betahaus.pyracont',
     ]
 
 setup(name='m2m_groups',
