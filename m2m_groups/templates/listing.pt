@@ -11,7 +11,7 @@
 
     <ul>
         <tal:iterate repeat="(name, group) groups.items()">
-            <li>
+            <li tal:condition="can_manage(name)">
                 <a href="${request.resource_url(context, 'groups', query = {'action': 'view', 'name': name})}">
                     ${group['title']}
                 </a><br/>
@@ -22,11 +22,16 @@
                    i18n:translate="">
                     Edit
                 </a>
+                <a href="${request.resource_url(context, 'groups', query = {'action': 'delete', 'name': name})}"
+                   i18n:translate="">
+                    Delete
+                </a>
             </li>
         </tal:iterate>
     </ul>
     <p>&nbsp;</p>
     <a href="${request.resource_url(context, 'groups', query = {'action': 'add'})}"
+       tal:condition="userid"
        i18n:translate="">Add group</a>
 
 </div>
